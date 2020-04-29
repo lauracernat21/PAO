@@ -2,6 +2,7 @@ package Reservations;
 
 import java.util.*;
 
+
 public class Main {
 
     public static void menu() {
@@ -13,42 +14,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        Spectator Laura = new Spectator("Laura", 21);
-//        Spectator Gabriela = new Spectator("Gabriela", 10);
-//        Spectator Mihai = new Spectator("Mihai", 32);
+        List<Spectator> spectators = ReadFromCsv.readSpectators();
+        List<Show> shows = ReadFromCsv.readShows();
+        List<Hall> halls = ReadFromCsv.readHalls();
 
-        // hall and seats for hall 1
-
-        Hall hall_1 = new Hall(5, 5, 25, 1);
-        hall_1.initialization();
-
-        // hall and seats for hall 2
-
-        Hall hall_2 = new Hall(5,5, 25, 2);
-        hall_2.initialization();
-
-        List<Hall> halls = new ArrayList<>();
-        halls.add(hall_1);
-        halls.add(hall_2);
-
-        // prices
-
-        float price_1 = 50.0f;
-        float price_2 = 65.5f;
-
-        // dates
-
-        String date1 = "12-05-2020 18:00";
-        String date2 = "27-07-2020 20:00";
-
-        // shows
-
-        Show show1 = new Show("Bani din Cer", date1, hall_1, price_1);
-        Show show2 = new Show("Hamlet", date2, hall_2, price_2);
-
-        List<Show> shows = new ArrayList<>();
-        shows.add(show1);
-        shows.add(show2);
 
         List<Ticket> tickets = new ArrayList<>();
 
@@ -65,6 +34,9 @@ public class Main {
                 case 1: {
 
                     // CUMPARA BILET
+
+                    Audit.getInstance().writeLogs("Cumpara un bilet");
+
                     System.out.println("Which show would you like to attend?\n");
                     service.showAllShows(shows);
                     int showNumber = in.nextInt();
@@ -75,11 +47,15 @@ public class Main {
                 }
                 case 2: {
 
+                    Audit.getInstance().writeLogs("Afiseaza numele spectacolelor programate");
+
                     // AFISEAZA NUMELE SPECTACOLELOR PROGRAMATE
                     service.showAllShows(shows);
                     break;
                 }
                 case 3: {
+
+                    Audit.getInstance().writeLogs("Adauga un spectacol");
 
                     // ADAUGA UN SPECTACOL
                     service.addShow(shows, halls);
@@ -87,6 +63,8 @@ public class Main {
                     break;
                 }
                 case 4: {
+
+                    Audit.getInstance().writeLogs("Anuleaza un spectacol");
 
                     // ANULEAZA UN SPECTACOL
                     System.out.println("Which show would you like to cancel? ");
@@ -98,11 +76,15 @@ public class Main {
                 }
                 case 5: {
 
+                    Audit.getInstance().writeLogs("Afiseaza toate biletele cumparate la toate spectacolele");
+
                     // AFISEAZA BILETELE CUMPARATE LA TOATE SPECTACOLELE
                     service.showAllTheTickets(tickets);
                     break;
                 }
                 case 6: {
+
+                    Audit.getInstance().writeLogs("Afiseaza toate biletele cumparate la un anumit spectacol");
 
                     // AFISEAZA BILETELE CUMPARATE LA UN ANUMIT SPECTACOL
                     System.out.println("Which show's tickets would you like to see?");
@@ -113,11 +95,15 @@ public class Main {
                 }
                 case 7: {
 
+                    Audit.getInstance().writeLogs("Returneaza un bilet");
+
                     // RETURNEAZA UN BILET
                     service.returnTicket(tickets, shows);
                     break;
                 }
                 case 8: {
+
+                    Audit.getInstance().writeLogs("Afiseaza detaliile unui spectacol");
 
                     // AFISEAZA DETALIILE UNUI SPECTACOL
                     System.out.println("Which show details would you like to know?");
@@ -128,17 +114,23 @@ public class Main {
                 }
                 case 9: {
 
+                    Audit.getInstance().writeLogs("Adauga o sala noua");
+
                     // ADAUGA O SALA NOUA
                     service.addHall(halls);
                     break;
                 }
                 case 10: {
 
+                    Audit.getInstance().writeLogs("Afiseaza toate salile");
+
                     // AFISEAZA TOATE SALILE
                     service.showAllHalls(halls);
                     break;
                 }
                 case 11: {
+
+                    Audit.getInstance().writeLogs("Afiseaza locurile unei sali");
 
                     //AFISEAZA LOCURILE UNEI SALI: false - biletul respectiv nu a fost cumparat / true - biletul a fost cumparat
                     System.out.println("Which show's hall would you like to see?");
@@ -148,6 +140,8 @@ public class Main {
                     break;
                 }
                 case 0: {
+
+                    Audit.getInstance().writeLogs("Exit");
                     ok = false;
                     break;
                 }

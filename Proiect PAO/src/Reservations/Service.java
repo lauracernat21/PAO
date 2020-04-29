@@ -1,8 +1,16 @@
 package Reservations;
 
 import java.util.*;
+import static Reservations.ReadFromCsv.*;
 
 public class Service {
+
+//    public void loadData() {
+//        // shows
+//
+//        List<Show> shows = ReadFromCsv.readShows(1);
+//
+//    }
 
     public void buyTicket(Show show, int numberOfTickets, List<Ticket> tickets) {
         Scanner in = new Scanner(System.in);
@@ -130,6 +138,7 @@ public class Service {
         int hall_number = in.nextInt();
         int total_seats = length * width;
         Hall hall = new Hall(length, width, total_seats, hall_number);
+        hall.initialization();
         halls.add(hall);
     }
 

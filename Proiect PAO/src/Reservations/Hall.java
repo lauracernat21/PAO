@@ -25,7 +25,7 @@ public class Hall {
         {
             for(int j = 0; j < seats[0].length; j++)
             {
-                seats[i][j] = new Seat(i, j, false);
+                seats[i][j] = new Seat(i+1, j+1, false);
             }
         }
     }
